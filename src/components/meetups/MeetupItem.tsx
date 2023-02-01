@@ -1,15 +1,21 @@
-import Image from 'next/image';
-import Card from '../ui/Card';
-import styled from 'styled-components';
+import Card from "../ui/Card";
+import styled from "styled-components";
+import { useRouter } from "next/router";
 
 type MeetupItemProps = {
   id: string;
   address: string;
   image: string;
   title: string;
-}
+};
 
-const MeetupItem = ({address, image, title}: MeetupItemProps) => {
+const MeetupItem = ({ id, address, image, title }: MeetupItemProps) => {
+  const router = useRouter();
+
+  const showDetailsHandler = () => {
+    router.push(`/${id}`);
+  };
+
   return (
     <Item>
       <Card>
@@ -21,12 +27,12 @@ const MeetupItem = ({address, image, title}: MeetupItemProps) => {
           <address>{address}</address>
         </Content>
         <Actions>
-          <button>Show Details</button>
+          <button onClick={showDetailsHandler}>Show Details</button>
         </Actions>
       </Card>
     </Item>
   );
-}
+};
 
 export default MeetupItem;
 
@@ -58,21 +64,21 @@ const Content = styled.div`
 `;
 
 const Actions = styled.div`
-    padding: 1.5rem;
+  padding: 1.5rem;
   text-align: center;
 
   & button {
     font: inherit;
     cursor: pointer;
-    color: #77002e;
-    border: 1px solid #77002e;
+    color: #007749;
+    border: 1px solid #007749;
     background-color: transparent;
     padding: 0.5rem 1.5rem;
     border-radius: 4px;
 
     &:hover,
     &:active {
-      background-color: #ffe2ed;
+      background-color: #f0ffe2;
     }
   }
 `;
