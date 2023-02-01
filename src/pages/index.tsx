@@ -1,7 +1,8 @@
-import React from "react";
+import MeetupList from "@/components/meetups/MeetupList";
+import meetups from "../data/meetups.json";
 
 function HomePage() {
-  return <div>HomePage</div>;
+  return <MeetupList meetups={meetups} />;
 }
 
 export default HomePage;
