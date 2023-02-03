@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-interface MeetupDataProps {
+interface MeetupDetailProps {
   address: string;
   image: string;
   title: string;
@@ -13,7 +13,7 @@ const MeetupDetail = ({
   image,
   title,
   description,
-}: MeetupDataProps) => {
+}: MeetupDetailProps) => {
   return (
     <Detail>
       <img src={image} alt={address} />
