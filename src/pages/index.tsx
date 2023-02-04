@@ -1,6 +1,6 @@
 import MeetupList from "@/components/meetups/MeetupList";
-import { GetServerSideProps, GetStaticProps } from "next";
-import meetupsData from "../data/meetups.json";
+import { GetStaticProps } from "next";
+import { dbConnection, dbDisconnection } from "@/services/mongoDb";
 
 interface Meetup {
   id: string;
@@ -18,9 +18,19 @@ const HomePage = ({ meetups }: HomePageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  const meetupsCollection = await dbConnection("dev-meetups");
+  const meetupsData = await meetupsCollection.find().toArray();
+  dbDisconnection();
+
   return {
     props: {
-      meetups: meetupsData,
+      meetups: meetupsData.map((meetup) => ({
+        title: meetup.title,
+        address: meetup.address,
+        image: meetup.image,
+        description: meetup.description,
+        id: meetup._id.toString(),
+      })),
     },
     revalidate: 1,
   };

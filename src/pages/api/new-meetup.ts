@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { dbConnection, dbDisconnection } from "@/services/mongoDb";
 import { NextApiRequest, NextApiResponse } from "next";
 
 interface Data {
@@ -12,11 +12,9 @@ interface ExtendedNextApiRequest extends NextApiRequest {
   body: Data;
 }
 
-interface SuccessResponseData {
+interface ResponseData {
   message: string;
 }
-
-type ResponseData = SuccessResponseData | string;
 
 const handler = async (
   req: ExtendedNextApiRequest,
@@ -27,25 +25,21 @@ const handler = async (
       const { title, image, address, description } = req.body;
 
       if (!title) {
-        return res.status(400).send("title is required");
+        return res.status(400).json({ message: "Title is required" });
       }
 
       if (!image) {
-        return res.status(400).send("image is required");
+        return res.status(400).json({ message: "Image is required" });
       }
 
       if (!address) {
-        return res.status(400).send("address is required");
+        return res.status(400).json({ message: "Address is required" });
       }
 
       if (!description) {
-        return res.status(400).send("description is required");
+        return res.status(400).json({ message: "Description is required" });
       }
-
-      const client = await MongoClient.connect(process.env.DB_HOST!);
-      const db = client.db();
-
-      const meetupsCollection = db.collection("dev-meetups");
+      const meetupsCollection = await dbConnection("dev-meetups");
 
       const result = await meetupsCollection.insertOne({
         title,
@@ -54,7 +48,7 @@ const handler = async (
         description,
       });
 
-      client.close();
+      dbDisconnection();
 
       return res.status(201).json({ message: "Meetup added successfully!" });
     } catch (err) {
