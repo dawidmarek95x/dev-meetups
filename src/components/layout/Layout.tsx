@@ -1,6 +1,7 @@
 import MainNavigation from "./MainNavigation";
 import { ReactNode } from "react";
 import styled from "styled-components";
+import Head from "next/head";
 
 interface LayoutProps {
   children: ReactNode;
@@ -8,10 +9,14 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div>
+    <>
+      <Head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link rel="icon" href="/dev-meetups.ico" />
+      </Head>
       <MainNavigation />
       <Main>{children}</Main>
-    </div>
+    </>
   );
 };
 

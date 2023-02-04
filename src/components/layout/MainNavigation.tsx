@@ -27,8 +27,9 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #007749;
+  background: linear-gradient(to right, #007749, #438eb4);
   padding: 0 10%;
+  box-shadow: 0 5px 20px 5px #00663f99;
 `;
 
 const Logo = styled.div`

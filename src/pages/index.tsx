@@ -1,6 +1,7 @@
 import MeetupList from "@/components/meetups/MeetupList";
 import { GetStaticProps } from "next";
 import { dbConnection, dbDisconnection } from "@/services/mongoDb";
+import Head from "next/head";
 
 interface Meetup {
   id: string;
@@ -14,7 +15,18 @@ interface HomePageProps {
 }
 
 const HomePage = ({ meetups }: HomePageProps) => {
-  return <MeetupList meetups={meetups} />;
+  return (
+    <>
+      <Head>
+        <title>Dev Meetups</title>
+        <meta
+          name="description"
+          content="Find many great meetups dedicated to developers around the world."
+        />
+      </Head>
+      <MeetupList meetups={meetups} />
+    </>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async () => {

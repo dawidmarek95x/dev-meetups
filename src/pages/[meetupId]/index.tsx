@@ -2,6 +2,7 @@ import MeetupDetail from "@/components/meetups/MeetupDetail";
 import { dbConnection, dbDisconnection } from "@/services/mongoDb";
 import { ObjectId } from "mongodb";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 
 interface Meetup {
   _id: string;
@@ -17,12 +18,18 @@ interface MeetupDetailsProps {
 
 const MeetupDatails = ({ meetup }: MeetupDetailsProps) => {
   return (
-    <MeetupDetail
-      address={meetup?.address ?? ""}
-      description={meetup?.description ?? ""}
-      image={meetup?.image ?? ""}
-      title={meetup?.title ?? ""}
-    />
+    <>
+      <Head>
+        <title>{meetup.title}</title>
+        <meta name="description" content={meetup.description} />
+      </Head>
+      <MeetupDetail
+        address={meetup.address}
+        description={meetup.description}
+        image={meetup.image}
+        title={meetup.title}
+      />
+    </>
   );
 };
 
