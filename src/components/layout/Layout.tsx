@@ -1,4 +1,4 @@
-import MainNavigation from "./MainNavigation";
+import HeaderSection from "./HeaderSection";
 import { ReactNode } from "react";
 import styled from "styled-components";
 import Head from "next/head";
@@ -14,7 +14,7 @@ const Layout = ({ children }: LayoutProps) => {
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link rel="icon" href="/dev-meetups.ico" />
       </Head>
-      <MainNavigation />
+      <HeaderSection />
       <Main>{children}</Main>
     </>
   );

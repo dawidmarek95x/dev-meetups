@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-const MainNavigation = () => {
+const HeaderSection = () => {
   return (
     <Header>
       <Logo>Dev Meetups</Logo>
@@ -19,7 +19,7 @@ const MainNavigation = () => {
   );
 };
 
-export default MainNavigation;
+export default HeaderSection;
 
 const Header = styled.header`
   width: 100%;
@@ -33,9 +33,18 @@ const Header = styled.header`
 `;
 
 const Logo = styled.div`
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
   font-weight: bold;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 1.8rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2rem;
+  }
 `;
 
 const NavList = styled.ul`
@@ -43,21 +52,39 @@ const NavList = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: baseline;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    align-items: baseline;
+  }
 
   & li {
-    margin-left: 3rem;
+    margin-left: 1.5rem;
+
+    @media (min-width: 768px) {
+      margin-left: 3rem;
+    }
   }
 
   & a {
+    display: block;
+    text-align: center;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #f7fcb8;
 
     &:hover,
     &:focus,
     &.active {
       color: white;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1.2rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1.5rem;
     }
   }
 `;
