@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import styled from 'styled-components';
+import { ReactNode } from "react";
+import styled from "styled-components";
 
 interface CardProps {
   children: ReactNode;
@@ -7,7 +7,7 @@ interface CardProps {
 
 const Card = ({ children }: CardProps) => {
   return <StylizedCard>{children}</StylizedCard>;
-}
+};
 
 export default Card;
 

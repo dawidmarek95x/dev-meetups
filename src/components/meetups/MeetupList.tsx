@@ -13,7 +13,6 @@ interface MeetupListProps {
 }
 
 const MeetupList = ({ meetups }: MeetupListProps) => {
-
   return (
     <List>
       {meetups.map((meetup: Meetup) => (
